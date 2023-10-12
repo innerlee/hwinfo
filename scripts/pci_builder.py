@@ -57,7 +57,7 @@ class PCIParser:
 
     def read_lines(self) -> Generator[str, None, None]:
         with open(self.in_path) as f:
-            for line in f.readlines():
+            for line in f:
                 # skip all nonsense lines (comments and empty lines)
                 if line.startswith("#") or len(line) == 0 or line == '\n':
                     continue
