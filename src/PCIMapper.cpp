@@ -96,7 +96,6 @@ const PCIVendor& PCIMapper::operator[](const std::string& vendor_id) const { ret
 
 // _____________________________________________________________________________________________________________________
 PCIMapper PCI::getMapper() {
-
   const auto getenv = [](const char* name) -> std::string {
 
 #ifdef _MSC_VER
@@ -111,8 +110,7 @@ PCIMapper PCI::getMapper() {
     return ret;
   };
 
-  static std::string path = getenv("HOME");
-  static PCIMapper mapper(path + "/.hwinfo/pci.ids");
+  static PCIMapper mapper("pci.ids");
   return mapper;
 }
 
