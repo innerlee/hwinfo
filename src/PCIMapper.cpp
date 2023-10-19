@@ -110,8 +110,7 @@ PCIMapper PCI::getMapper() {
     return ret;
   };
 
-  static std::string path = getenv("HOME");
-  static PCIMapper mapper(path + "/.hwinfo/pci.ids");
+  static PCIMapper mapper("pci.ids");
   return mapper;
 }
 

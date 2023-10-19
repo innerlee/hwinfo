@@ -36,7 +36,15 @@ add_subdirectory(src)
 target_include_directories(HWinfo PUBLIC ${PROJECT_SOURCE_DIR}/include/)
 
 if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
-    file(COPY "scripts/pci.ids" DESTINATION "$ENV{HOME}/.hwinfo/")
+    # OLD STORAGE LOCATION (DEPRECATED)
+    #file(COPY "scripts/pci.ids" DESTINATION "$ENV{HOME}/.hwinfo/")
+
+    set(PCI_IDS_SOURCE "scripts/pci.ids")
+    set(PCI_IDS_DESTINATION "${CMAKE_BINARY_DIR}/.hwinfo")
+
+    configure_file("${PCI_IDS_SOURCE}" "${PCI_IDS_DESTINATION}/pci.ids" COPYONLY)
+
+    install(FILES "${PCI_IDS_SOURCE}" DESTINATION ${CMAKE_BINARY_DIR}/bin)
 endif ()
 
 if (${MAIN_PROJECT})
